@@ -22,7 +22,7 @@ foreach(_dir IN ITEMS ${DEMOS})
         set(_project_name "${_file_name}")
         message(STATUS "  ${_dir}/${_file_name} is going to be built")
 
-        add_executable(${_project_name} "${_dir}/${_file_name}" 01_basic/03_class/01_encapsulution/01_class_demo.cpp)
+        add_executable(${_project_name} "${_dir}/${_file_name}")
     endforeach()
 
 endforeach()

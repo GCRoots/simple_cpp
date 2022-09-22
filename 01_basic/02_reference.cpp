@@ -1,8 +1,6 @@
-//
-// Created by ubuntu on 2022/9/15.
-//
-
 /**
+ * Created by ubuntu on 2022/9/15.
+ *
  * 引用（reference）代码示例
  *
  * 作用：给变量起别名
