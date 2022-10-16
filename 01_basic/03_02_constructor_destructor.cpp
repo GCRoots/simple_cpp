@@ -178,14 +178,14 @@ void test_3_2(){
     value(p);
 }
 // 3.3 一个对象以值传递的方式从函数返回
-Person_2 result(){
+Person_2& result(){
     Person_2 p;
     cout<<"result()函数内变量p的地址为：\t\t"<<(int *)&p<<endl;
     return p;
 }
 void test_3_3(){
-    Person_2 p=result();
-    cout<<"result()函数返回的变量p的地址为：\t"<<(int *)&p<<endl;
+    Person_2 p1=result();
+    cout<<"result()函数返回的变量p的地址为：\t"<<(int *)&p1<<endl;
 }
 
 // 5. 深拷贝与浅拷贝

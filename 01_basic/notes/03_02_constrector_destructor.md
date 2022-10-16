@@ -219,7 +219,7 @@ void test_3_2(){
 }
 
 // 3.3 一个对象以值传递的方式从函数返回
-Person_2 result(){
+Person_2& result(){
     Person_2 p;
     cout<<"result()函数内变量p的地址为：\t\t"<<(int *)&p<<endl;
     return p;
@@ -246,7 +246,7 @@ int main() {
 ```
 
 运行结果：
-![拷贝函数的调用时机](https://img-blog.csdnimg.cn/e3435880c9f84e2f8a07126da9f7300f.png)
+![拷贝函数的调用时机](https://img-blog.csdnimg.cn/02a64f65d9bb47b4b1116d7dc96b3ddb.png)
 
 
 ****
