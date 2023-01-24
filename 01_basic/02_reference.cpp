@@ -49,13 +49,13 @@ int main() {
     int &reference_a=a;
 
     //基础示例
-    cout<<"a="<<a<<endl; //a=10
+    cout<<"a.html="<<a<<endl; //a.html=10
     cout<<"reference_a="<<reference_a<<endl; //reference_a=10
     a+=10;
-    cout<<"a="<<a<<endl; //a=20
+    cout<<"a.html="<<a<<endl; //a.html=20
     cout<<"reference_a="<<reference_a<<endl; //reference_a=20
     reference_a+=10;
-    cout<<"a="<<a<<endl; //a=30
+    cout<<"a.html="<<a<<endl; //a.html=30
     cout<<"reference_a="<<reference_a<<endl; //reference_a=20
     cout<<""<<endl;
 
@@ -71,7 +71,7 @@ int main() {
     //引用的数组
     // int &re_arr=&arr;
     // Non-const lvalue reference to type 'int' cannot bind to
-    // a temporary of type 'int (*)[5]'
+    // a.html temporary of type 'int (*)[5]'
     // 编译错误
     // error: invalid conversion from ‘int (*)[5]’ to ‘int’
 
@@ -95,9 +95,9 @@ int main() {
     cout<<"引用作为函数参数"<<endl;
     a=10;
     int b=20;
-    cout<<"a="<<a<<",b="<<b<<endl;
+    cout<<"a.html="<<a<<",b="<<b<<endl;
     func1(a,b);
-    cout<<"a="<<a<<",b="<<b<<endl;
+    cout<<"a.html="<<a<<",b="<<b<<endl;
     cout<<""<<endl;
 
     //引用作为函数返回值
@@ -157,7 +157,7 @@ int& func2(int& a){
 int& func2_local(){
     int a=10;   //栈区，函数调用结束后释放
     return a;   //Reference to stack memory associated
-                // with local variable 'a' returned
+                // with local variable 'a.html' returned
 }
 
 //  2. 函数调用可以作为左值
@@ -174,5 +174,5 @@ string& func2_new(){
 
 //常量引用/常引用
 void func3(const int &a){
-    cout<<"a="<<a<<endl;
+    cout<<"a.html="<<a<<endl;
 }

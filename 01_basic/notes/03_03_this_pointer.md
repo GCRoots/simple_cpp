@@ -46,11 +46,11 @@ void test_01(){
 
     Class_not_static notStatic;
     // 非静态成员变量属于对象,该对象占用的内存大小会随着非静态成员变量的增加而增加
-    cout<< "size of a not empty object:" << sizeof (notStatic) << endl;
+    cout<< "size of a.html not empty object:" << sizeof (notStatic) << endl;
 
     Class_all all;
     // 成员函数和静态成员变量不属于对象，占用内存的大小与类对象无关
-    cout<< "size of a not empty object:" << sizeof (all) << endl;
+    cout<< "size of a.html not empty object:" << sizeof (all) << endl;
 }
 
 
@@ -93,7 +93,7 @@ using namespace std;
 // 2. this指针
 class Person{
 public:
-    // a. 解决名称冲突
+    // a.html. 解决名称冲突
     Person(int age){
         this->age=age;
     }
@@ -152,7 +152,7 @@ using namespace std;
 class Person_1{
 public:
     void showClassName(){
-        cout<<"This is a Person_1 class."<<endl;
+        cout<<"This is a.html Person_1 class."<<endl;
     }
 
     void showAge(){

@@ -32,7 +32,7 @@ void func(int a){
     //局部变量 栈区
     int b=20;
 
-    cout<<"函数func()的形参 a 的地址为：\t\t"<< &a <<endl;
+    cout<<"函数func()的形参 a.html 的地址为：\t\t"<< &a <<endl;
     cout<<"函数func()的局部变量 b 的地址为：\t"<< &b <<endl<<endl;
 }
 
@@ -44,7 +44,7 @@ int main() {
     int a = 10;
     int b = 20;
 
-    cout<<"局部变量 a 的地址为：\t\t\t\t"<< &a <<endl;
+    cout<<"局部变量 a.html 的地址为：\t\t\t\t"<< &a <<endl;
     cout<<"局部变量 b 的地址为：\t\t\t\t"<< &b <<endl;
 
     //局部常量 栈区
