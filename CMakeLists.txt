@@ -10,13 +10,13 @@ set(CMAKE_CXX_STANDARD 14)
 
 
 set(ALONE
-#        01_basic
-#        03_projects/03_01_address_book_manage
+        01_basic
+        03_projects/01_address_book_manage
         02_advance
         )
 
 set(DEMOS
-#        03_projects/03_02_employee_manage
+        03_projects/03_02_employee_manage
 
         )
 
@@ -48,5 +48,9 @@ foreach(_dir IN ITEMS ${DEMOS})
     get_filename_component(_file_name ${_dir} NAME)
     message(STATUS "${_file_name}'s files: ${_cpps}\n\n")
     add_executable(${_file_name} ${_cpps})
+
+    string(REGEX REPLACE ".+/(.+)\\..*" "\\1" _exe ${_cpps})
+
+
 
 endforeach()

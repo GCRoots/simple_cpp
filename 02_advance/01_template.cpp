@@ -57,6 +57,19 @@
  *      如果不指定，编译器无法给子类分配内存
  *      若是想灵活指定父类中的类型T，子类也需要变成类模版
  *
+ *  类模版成员函数类外实现
+ *
+ *  类模版分文件编写：
+ *      问题；类模版中的成员函数的创建时机是在调用阶段，所以分文件编写时会出现链接不到的问题
+ *      解决：1、直接包含 .cpp 源文件
+ *           2、将声明和实现放在同一个文件中，并更改后缀名为 .hpp
+ *
+ *  类模版与友元
+ *      类模版配合友元的类内实现与类外实现
+ *          1、全局函数类内实现：直接在类内声明友元
+ *          2、全局函数类内实现：需要提前让编译器知道全局函数的存在
+ *
+ *
  *
  */
 #include <iostream>
@@ -222,9 +235,6 @@ void test03(){
     Person p1("tom",10);
     Person p2("tom",10);
     cout << (isEqual(p1,p2)?"p1 == p2":"p1 != p2") << endl;
-
-
-
 }
 
 
@@ -332,9 +342,111 @@ void test06(){
     printPersonT_03(p3);
 }
 
-// 类模版与继承
+// 类模版与继承：
+template<class T>
+class Base{
+public:
+    T t;
+};
 
+// 当子类继承的父类是一个类模版时，子类在声明时，要指定出父类中的类型
+class Son1:public Base<int>{
+public:
+    Son1(){
+        cout << "T's type is:" << typeid(this->t).name() << endl;
+    }
+};
 
+// 若是想灵活指定父类中的类型T，子类也需要变成类模版
+template<class T1,class T2>
+class Son2:public Base<T2>{
+public:
+    Son2(){
+        cout << "T1's type is:" << typeid(T1).name() << endl;
+        cout << "T2's type is:" << typeid(T2).name() << endl;
+    }
+
+    T1 obj;
+};
+
+void test07(){
+    Son1 son1;
+    Son2<int,char> son2;
+}
+
+// 类模版成员函数类外实现
+template<class NameType, class AgeType = int >
+class PersonOut{
+public:
+    PersonOut(NameType name,AgeType age);
+
+    void showPersonOut();
+
+    NameType m_name;
+    AgeType m_age;
+
+};
+
+// 构造函数类外实现
+template<class NameType,class AgeType>
+PersonOut<NameType,AgeType>::PersonOut(NameType name,AgeType age){
+    this->m_name = name;
+    this->m_age = age;
+}
+
+// 成员函数类外实现
+template<class NameType,class AgeType>
+void PersonOut<NameType,AgeType>::showPersonOut(){
+    cout << this->m_name << "'s age is " << this->m_age << "." << endl;
+}
+
+void test08(){
+    PersonOut<string> p("Alice",11);
+    p.showPersonOut();
+}
+
+// 类模版与友元
+//  1、全局函数类内实现：直接在类内声明友元
+//  2、全局函数类内实现：需要提前让编译器知道全局函数的存在
+
+// 提前让编译器知道Friend类的存在
+template<class NameType, class AgeType = int>
+class Friend;
+
+// 2、全局函数类内实现
+template<class NameType, class AgeType = int >
+void printFriend(Friend<NameType,AgeType> f){
+    cout << "类外实现：" << f.m_name << "'s age is " << f.m_age << "." << endl;
+}
+
+template<class NameType, class AgeType>
+class Friend{
+    // 1、全局函数类内实现
+    friend void showFriend(Friend<NameType,AgeType> f){
+        cout << "类内实现：" << f.m_name << "'s age is " << f.m_age << "." << endl;
+    }
+
+    // 2、全局函数类内实现：需要提前让编译器知道全局函数的存在
+    friend void printFriend<>(Friend<NameType,AgeType> f);
+
+public:
+    Friend(NameType name,AgeType age){
+        this->m_name = name;
+        this->m_age = age;
+    }
+
+    NameType m_name;
+    AgeType m_age;
+
+};
+
+void test09(){
+    // 1、全局函数类内实现
+    Friend<string,int> f("Tom",13);
+    showFriend(f);
+    printFriend(f);
+
+}
 
 
 int main() {
@@ -355,6 +467,15 @@ int main() {
 
     // 类模版对象做函数参数
     test06();
+
+    // 类模版与继承
+    test07();
+
+    // 类模版成员函数类外实现
+    test08();
+
+    // 类模版与友元
+    test09();
 
     return 0;
 }
